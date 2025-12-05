@@ -1,4 +1,4 @@
-"user client";
+"use client";
 import React from 'react';
 import {Box, Typography, TextField, Button} from '@mui/material';
 
@@ -41,9 +41,11 @@ export default function SignUpPage() {
       </Typography>
       <TextField 
         label="Email" 
+        type="email"
         variant="outlined"
         value={name}
         onChange={ChangeName}
+        required
       />
       <TextField 
         label="Password" 
@@ -51,6 +53,7 @@ export default function SignUpPage() {
         variant="outlined"
         value={password}
         onChange={ChangePassword}
+        required
       />
       <Button 
         variant="contained" 

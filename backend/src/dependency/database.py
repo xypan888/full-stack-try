@@ -2,8 +2,10 @@ import os
 
 from sqlalchemy import Engine, event
 from sqlmodel import SQLModel, create_engine
+from dotenv import load_dotenv
 
-DATABASE_URL = os.getenv("DATABASE_URL", "postgresql+psycopg://postgres:123@localhost:5432/myapp")
+load_dotenv()  
+DATABASE_URL = os.getenv("DATABASE_URL")
 
 class EngineFactory:
     def __init__(self):
