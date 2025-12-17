@@ -26,7 +26,7 @@ export async function signIn(state: SignInState, formData: FormData) {
       return { errors: ["Sign-in failed. Please try again."] };
     }
   }
-  redirect("/");
+  redirect("/dashboard");
 }
 
 export async function signOut() {

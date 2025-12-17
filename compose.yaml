@@ -1,0 +1,35 @@
+name: fullstack_app
+
+services:
+  # FastAPI Backend
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile.dev
+    environment:
+      DATABASE_URL: postgresql+psycopg://postgres:123@host.docker.internal:5432/myapp
+      SECRET_KEY: your-secret-key-change-in-production
+      PYTHONUNBUFFERED: 1
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./backend/src:/app/src
+
+  # Next.js Frontend
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile.dev
+    environment:
+      NEXTAUTH_SECRET: your-nextauth-secret-change-in-production
+      NEXTAUTH_URL: http://localhost:3000
+      BACKEND_API_URL: http://backend:8000
+    ports:
+      - "3000:3000"
+    depends_on:
+      - backend
+    volumes:
+      - ./frontend/src:/app/src
+      - ./frontend/public:/app/public
+  
+
